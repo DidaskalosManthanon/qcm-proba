@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM sur les probabilités</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.geogebra.org/apps/deployggb.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body>
+    <header>
+        <h1>Comprendre et utiliser des notions élémentaires de probabilités (niveau 3<sup>ème</sup>)</h1>
+        <h2>Ce que sait faire l'élève (voir les <a href="https://eduscol.education.fr/document/14068/download" target="_blank">attendus de fin d'année</a>)</h2>
+        <ul>
+            <li id="CQSFE1">
+                À partir de dénombrements, il calcule des probabilités pour des expériences aléatoires simples à une ou deux épreuves : 
+                <a href="#MEO1">mise en oeuvre concrète.</a>
+            </li>
+            <li id="CQSFE2">
+                Il fait le lien entre stabilisation des fréquences et probabilités : 
+                <a href="#MEO2">mise en oeuvre concrète.</a>
+            </li>
+        </ul>
+        <h2>Exemples de réussite</h2>
+            <ul>
+                <li>
+                    On suppose que, pour un couple, la probabilité d'avoir une fille ou 
+                    un garçon est la même. Un couple souhaite avoir deux enfants.
+                    <ul>
+                        <li>
+                            Calcule, en explicitant les issues possibles, la probabilité d'avoir 
+                            deux garçons.
+                        </li>
+                        <li>
+                            Calcule la probabilité que le couple ait au moins une fille.
+                        </li>
+                    </ul>
+                    <em>
+                        Il peut utiliser le fait que c'est l'événement contraire d'avoir deux 
+                        garçons.
+                    </em>
+                </li>
+                <li>
+                    On tire, deux fois de suite et avec remise, une boule dans une urne 
+                    contenant une boule bleue et deux boules violettes. <br>
+                    Détermine la probabilité de tirer successivement deux boules violettes, 
+                    en utilisant une méthode de dénombrement prenant appui sur un tableau à 
+                    double entrée.
+                </li>
+                <li>
+                    On donne les fréquences d'apparition de chaque face d'un dé pour 10 000 lancers. <br>
+                    L'élève interprète les résultats en les comparant aux probabilités théoriques.
+                </li>
+                <li>
+                    L'élève interprète des simulations effectuées sur tableur ou logiciel de programmation
+                    en fonction d'un nombre de lancers.
+                </li>
+                
+            </ul>    
+    </header>
+    <main>
+        <section id="yourgame">
+            <h2>À vous de jouer</h2>
+            <article>
+                <h3 id="MEO1">Dénombrement <a href="#CQSFE1">(revoir les attendus)</a></h3>
+                <ol start="1">
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, en tenant 
+                            compte de l'ordre, combien y a-t-il d'issues possibles ? <br>
+                            <em>
+                                Une issue est un résultat possible, par exemple pile puis 
+                                face et face puis pile sont considérées comme des issues 
+                                différentes.
+                            </em><br>
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="noteq" src="./pics/notequal.png" alt="Signe différent">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q1r1"><label for="q1r1">1</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q1r2"><label for="q1r2">2</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q1r3"><label for="q1r3">3</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q1r4" data-correct><label for="q1r4">4</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, sans tenir 
+                            compte de l'ordre, combien y a-t-il d'issues possibles ? <br>
+                            <em>
+                                Une issue est un résultat possible, par exemple pile puis 
+                                face ou face puis pile sont considérées comme des issues 
+                                identiques.
+                            </em><br>
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="eq" src="./pics/equal.avif" alt="Signe égal">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q2r1"><label for="q2r1">1</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q2r2"><label for="q2r2">2</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q2r3" data-correct><label for="q2r3">3</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q2r4"><label for="q2r4">4</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si on lance simultanément (en même temps) deux pièces de monnaie 
+                            indiscernables (par exemple 2 pièces neuves d'une valeur de 1 euro),
+                            combien y a-t-il d'issues possibles ? <br>
+                            <em>
+                                Une issue est un résultat possible, par exemple pile et face.
+                            </em><br>
+                            <img class="coin" src="./pics/pile2euros.png" alt="Pièce de 2 euros pile">
+                            <img class="coin" src="./pics/face2euros.jpg" alt="Pièce de 2 euros face">
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q3r1"><label for="q3r1">1</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q3r2"><label for="q3r2">2</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q3r3" data-correct><label for="q3r3">3</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q3r4"><label for="q3r4">4</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="2" data-type="checkbox">
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, en tenant 
+                            compte de l'ordre, la probabilité d'obtenir pile (d'abord) puis 
+                            face (ensuite) est : <br>
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="noteq" src="./pics/notequal.png" alt="Signe différent">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" id="q4r1" data-correct><label for="q4r1">la même que celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q4r2"><label for="q4r2">supérieure à celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q4r3" data-correct><label for="q4r3">la même que celle d'obtenir deux fois pile</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q4r4"><label for="q4r4">supérieure à celle d'obtenir deux fois face</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="2" data-type="checkbox">  
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, sans tenir 
+                            compte de l'ordre, la probabilité d'obtenir pile (d'abord) puis 
+                            face (ensuite) est : <br>
+                            
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="eq" src="./pics/equal.avif" alt="Signe égal">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q5r1" data-correct><label for="q5r1">la même que celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q5r2"><label for="q5r2">supérieure à celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q5r3"><label for="q5r3">la même que celle d'obtenir deux fois pile</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q5r4" data-correct><label for="q5r4">supérieure à celle d'obtenir deux fois face</label>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+            
+            <article>
+            <h3 id="MEO2">Fréquence <a href="#CQSFE2">(revoir les attendus)</a></h3>
+            <ol start="6">
+                <li class="question" data-points="4" data-type="checkbox">
+                    <section id="pile-ou-face">
+                        <h4>Simulateur de Pile ou Face</h4>
+                        <!-- Sélection du nombre de lancers -->
+                        <label for="nombreLancers">Choisir le nombre de lancers :</label>
+                        <select id="nombreLancers">
+                            <option value="10">10</option>
+                            <option value="100">100</option>
+                            <option value="1000">1 000</option>
+                            <option value="10000">10 000</option>
+                            <option value="100000">100 000</option>
+                            <option value="1000000">1 000 000</option>
+                        </select>
+                        <button onclick="simulerPileFace()">Lancer</button>
+
+                        <!-- Résultats -->
+                        <div id="resultats" style="margin-top: 20px;"></div>
+
+                        <!-- Propositions de probabilité -->
+                        <div id="propositions" style="margin-top: 20px; display: none;"></div>
+                    </section>
+
+                    <script>
+                        function simulerPileFace() {
+                            const nbLancers = parseInt(document.getElementById("nombreLancers").value);
+                            let pile = 0;
+                            let face = 0;
+
+                            // Simule les lancers
+                            for (let i = 0; i < nbLancers; i++) {
+                                if (Math.random() < 0.5) {
+                                 pile++;
+                                } else {
+                                   face++;
+                                }
+                            }
+
+                            // Affiche les résultats
+                            const resultatsDiv = document.getElementById("resultats");
+                            resultatsDiv.innerHTML = `
+                            <p><strong>Résultats :</strong></p>
+                            <ul>
+                                <li>Pile : ${pile}</li>
+                                <li>Face : ${face}</li>
+                            </ul>
+                            `;
+
+                            // Propose les choix de probabilités
+                            const probaPile = pile / nbLancers;
+                            const num = pile;
+                            const den = nbLancers;
+
+                            // PGCD pour simplifier la fraction
+                            function pgcd(a, b) {
+                                while (b !== 0) {
+                                    [a, b] = [b, a % b];
+                                }
+                                return a;
+                            }
+
+                            const d = pgcd(num, den);
+                            const numReduit = num / d;
+                            const denReduit = den / d;
+
+                            const propositions = [
+                                { label: 'a)', value: 0.5, content: `\\(\\dfrac{1}{2}\\)` },
+                                { label: 'b)', value: probaPile, content: `\\(\\dfrac{${numReduit}}{${denReduit}}\\)` },
+                                { label: 'c)', value: 0.5, content: `\\(\\dfrac{1}{2}\\)` },
+                                { label: 'd)', value: +(probaPile + (Math.random() * 0.02 - 0.01)).toFixed(3), content: `\(${+(probaPile + (Math.random() * 0.02 - 0.01)).toFixed(3)}\)` }
+                            ];
+
+                            // Mélange des options
+                            shuffleArray(propositions);
+
+                            const propsHTML = `
+                            <p><strong>Quelle est la probabilité d’obtenir Pile ?</strong></p>
+                            <ul>
+                                ${propositions.map(p => `
+                                <li>
+                                    <input type="radio" name="q6reponse" value="${p.value}" ${p.content.includes('dfrac') ? 'data-correct' : ''} id="q6r${propositions.indexOf(p)+1}">
+                                    <label for="q6r${propositions.indexOf(p)+1}">${p.label} ${p.content}</label>
+                                </li>
+                                `).join('')}
+                                <li><button onclick="verifierReponseQ6()">Vérifier</button></li>
+                            </ul>
+                            `;
+
+                            const propDiv = document.getElementById("propositions");
+                            propDiv.innerHTML = propsHTML;
+                            propDiv.style.display = "block";
+                        }
+
+                        function shuffleArray(array) {
+                            for (let i = array.length - 1; i > 0; i--) {
+                                const j = Math.floor(Math.random() * (i + 1));
+                                [array[i], array[j]] = [array[j], array[i]];
+                            }
+                        }
+
+                        // Fonction appelée au clic sur "Vérifier"
+                        function verifierReponseQ6() {
+                            const radios = document.querySelectorAll('input[name="q6reponse"]');
+                            let selected = null;
+                            for (const radio of radios) {
+                                if (radio.checked) {
+                                    selected = parseFloat(radio.value);
+                                }
+                            }
+
+                            const correct = Array.from(document.querySelectorAll('input[name="q6reponse"]')).find(r => r.dataset.correct !== undefined);
+                            const reponseCorrecte = parseFloat(correct?.value || 0);
+
+                            const messageDiv = document.createElement("div");
+                            if (selected === reponseCorrecte) {
+                                messageDiv.innerHTML = '<p style="color:green;">✅ Réponse correcte !</p>';
+                                // Ajout du point à la variable globale
+                                window.q6Score = 4;
+                            } else {
+                                messageDiv.innerHTML = '<p style="color:red;">❌ Réponse incorrecte.</p>';
+                                window.q6Score = 0;
+                            }
+
+                            document.getElementById("propositions").appendChild(messageDiv);
+                            updateGlobalScore();
+                        }
+
+                        // Met à jour le score global
+                        function updateGlobalScore() {
+                            let totalPoints = 0;
+                            document.querySelectorAll('.question').forEach((el, index) => {
+                                const points = parseInt(el.getAttribute("data-points")) || 0;
+                                const type = el.getAttribute("data-type");
+
+                                if (type === "radio") {
+                                    const checked = el.querySelector("input:checked");
+                                    if (checked && checked.dataset.correct !== undefined) {
+                                        totalPoints += points;
+                                    }
+                                } else if (type === "checkbox") {
+                                    const correctBoxes = el.querySelectorAll("input[data-correct]");
+                                    const userChecked = el.querySelectorAll("input:checked");
+
+                                    let correctCount = 0;
+                                    correctBoxes.forEach(box => {
+                                        if (box.checked) correctCount++;
+                                    });
+
+                                    let wrongChecked = 0;
+                                    userChecked.forEach(box => {
+                                        if (!box.dataset.correct && box.checked) wrongChecked++;
+                                    });
+
+                                    if (correctCount === correctBoxes.length && wrongChecked === 0) {
+                                        totalPoints += points;
+                                    } else {
+                                        totalPoints += Math.max(0, correctCount - wrongChecked);
+                                    }
+                                }
+                            });
+
+                            // Gestion spécifique pour la question 6
+                            totalPoints += window.q6Score || 0;
+
+                            document.getElementById("score-display").innerText = `Score total : ${totalPoints}/48`;
+                        }
+                    </script>
+                </li>
+            </ol>
+            </article>
+    
+            
+            
+        </section>
+
+        <button id="submit-btn">Envoyer</button>
+        <div id="score-details">
+            <p id="score-display"></p>
+            <ul id="question-points"></ul>
+        </div>
+
+    </main>
+    
+    <footer>
+        <p>📚 Envie de progresser en maths ? Voir mon annonce sur <a href="https://www.superprof.fr/reussissez-maths-niveau-etudes-esprit.html" target="_blank">superprof</a></p>
+        <ul>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/image-fonction-affine/index.html" target="_blank">Calcul de l'image d'un nombre par une fonction affine</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/antecedent-fonction-affine/index.html" target="_blank">Antécédent d'un nombre par une fonction affine</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/quizz/index.html" target="_blank">QCMs de mathématiques (niveau 3<sup>ème</sup> - 2<sup>de</sup>)</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/quizz-stats-3eme/index.html" target="_blank">QCMs de stats (niveau 3<sup>ème</sup> - 2<sup>de</sup>)</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/qcm-numbers/" target="_blank">QCMs sur les nombres</a>
+             </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/geometry/index.html" target="_blank">Exercices de géométrie (niveau 3<sup>ème</sup> - 2<sup>de</sup>)</a>
+             </li>
+             <li>
+                <a href="https://didaskalosmanthanon.github.io/testimonial-slider/index.html" target="_blank">Ce que mes élèves pensent de mes cours de maths</a>
+             </li>
+        </ul>
+        <p>Pour entrer en contact remplissez ce <a href="https://forms.gle/mcZ5uMv1BjynrWrz9" target="_blank">formulaire</a></p>
+        <p>&copy; 2025 - <strong>Didaskalos Manthanon</strong>, <em>Apprenez à devenir un maître apprenant</em></p>
+        
+      </footer>
+
+      <script src="script.js"></script>
+</body>
+
+</html>

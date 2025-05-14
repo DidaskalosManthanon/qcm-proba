@@ -1,0 +1,288 @@
+body {
+    font-family: Monaco, sans-serif;
+    font-size: 1.25em;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /*font-size: 4em;*/
+    text-align: center;
+}
+
+h2 {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /*font-size: 3em;*/
+}
+
+
+ul li ul li {
+    font-size: 1em;
+}
+
+li {
+    margin: 1.25% 0.5%;
+}
+
+section {
+    font-size: 1.15em;
+}
+
+h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /*font-size: 1.5em;*/
+}
+
+input {
+    margin: 5%;
+}
+
+.graphs {
+    width: 50%;
+    height: 25%;
+    margin: 2%;
+}
+
+
+table:not(#speedtest) {
+    margin: 2.5% 0 2.5% 9%;
+}
+
+
+
+/* Définir le compteur une seule fois au niveau de #yourgame */
+#yourgame {
+    counter-reset: q-counter; /* Initialise le compteur */
+    margin: 2%;
+}
+
+/* Désactiver la numérotation par défaut des listes ordonnées dans #yourgame, sauf .progcalc */
+#yourgame ol:not(.progcalc, .resp) {
+    list-style-type: none; /* Désactive la numérotation par défaut */
+    padding-left: 0; /* Supprime le padding par défaut des listes */
+}
+
+/* Appliquer la numérotation personnalisée à tous les <li> dans #yourgame, sauf ceux de .progcalc */
+#yourgame ol:not(.progcalc, .resp) > li {
+    counter-increment: q-counter; /* Incrémente le compteur uniquement pour les éléments non .progcalc */
+    margin-top: 2%;
+}
+
+#yourgame ol:not(.progcalc, .resp) > li::before {
+    content: "Question " counter(q-counter) ". "; /* Ajoute "Question X" */
+    font-weight: bold; /* Optionnel : met en gras le texte */
+    margin-right: 0.5em; /* Ajoute un espace entre le numéro et le texte */
+}
+
+/* Styles spécifiques pour .progcalc */
+.progcalc {
+    list-style-type: lower-roman; /* Utilise i), ii), iii), etc. */
+    padding-left: 2em; /* Ajoute un peu de marge à gauche pour l'alignement */
+    counter-reset: none; /* Désactive tout compteur pour .progcalc */
+}
+
+.progcalc li {
+    list-style-type: lower-roman; /* Assure que chaque élément utilise lower-roman */
+    counter-increment: none; /* Désactive l'incrémentation du compteur pour les éléments .progcalc */
+}
+
+.resp {
+    list-style-type: lower-alpha; /* Utilise a), b), c), etc. */
+    padding-left: 2em; /* Ajoute un peu de marge à gauche pour l'alignement */
+    counter-reset: none; /* Désactive tout compteur pour .resp */
+    background-color: rgb(211, 211, 122);
+    margin: 2%;
+    padding: 2% 2% 2% 4%;
+    display: inline-block;
+    min-width: 60%;
+    width: auto;
+    border-radius: 5%;
+}
+
+
+
+.resp li {
+    list-style-type: lower-alpha; /* Assure que chaque élément utilise lower-alpha */
+    counter-increment: none; /* Désactive l'incrémentation du compteur pour les éléments .resp */
+}
+
+
+td, th {
+    justify-self: center;
+    text-align: center;
+    align-items: center;
+    padding: 4%;
+    margin: 5%;
+    width: 5%;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+.orange {
+    color: orange;
+}
+
+.red {
+    color: red;
+}
+
+#globalindex {
+    width: 25%;
+    height: 5%;
+    margin: 0.5% 25%;
+}
+
+.quiz {
+    margin-bottom: 30px;
+  }
+  
+  .question {
+    background: #fff;
+    padding: 1%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 1.5rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  }
+
+  .check-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .check-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .feedback {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    h2 {
+      font-size: 1.2rem;
+    }
+  
+    .question {
+      padding: 1%;
+      margin: 2%;
+    }
+  }
+
+   
+  #submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #submit-btn:hover {
+    background-color: #27ae60;
+  }
+  
+  #score-display {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+
+  #score-details {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #score-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  #question-points {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  #question-points li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  /* FOOTER : Lien bien visible */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  margin-top: 30px;
+}
+
+footer a {
+  color: #ff6363;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer li {
+  list-style: none;
+  text-align: justify;
+}
+
+.geogebra-container {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.coin, .eq, .noteq {
+    width: 10%;
+    height: 10%;
+    margin: 2%;
+    padding: 1%;
+}
+
+.freq {
+  font-family: monospace;
+  font-size: 2em;
+}
+
+
+.ligne-resultat {
+    display: flex;
+    align-items: center;         /* Alignement vertical au milieu */
+    gap: 10px;                  /* Espace entre les éléments */
+    margin-bottom: 8px;
+}

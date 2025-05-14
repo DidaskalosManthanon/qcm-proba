@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM sur les probabilités</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.geogebra.org/apps/deployggb.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Styles pour le simulateur (vous pouvez les mettre dans styles.css) */
+        #coin-flip-simulator {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+        #coin-flip-simulator label,
+        #coin-flip-simulator select,
+        #coin-flip-simulator button {
+            margin: 5px;
+            padding: 8px;
+            font-size: 1em;
+        }
+        #coin-flip-simulator button {
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        #coin-flip-simulator button:hover {
+            background-color: #0056b3;
+        }
+        #flip-results p, #probability-question-container p {
+            margin-bottom: 10px;
+        }
+        #probability-options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Comprendre et utiliser des notions élémentaires de probabilités (niveau 3<sup>ème</sup>)</h1>
+        <h2>Ce que sait faire l'élève (voir les <a href="https://eduscol.education.fr/document/14068/download" target="_blank">attendus de fin d'année</a>)</h2>
+        <ul>
+            <li id="CQSFE1">
+                À partir de dénombrements, il calcule des probabilités pour des expériences aléatoires simples à une ou deux épreuves : 
+                <a href="#MEO1">mise en oeuvre concrète.</a>
+            </li>
+            <li id="CQSFE2">
+                Il fait le lien entre stabilisation des fréquences et probabilités : 
+                <a href="#MEO2">mise en oeuvre concrète.</a>
+            </li>
+        </ul>
+        <h2>Exemples de réussite</h2>
+            <ul>
+                <li>
+                    On suppose que, pour un couple, la probabilité d'avoir une fille ou 
+                    un garçon est la même. Un couple souhaite avoir deux enfants.
+                    <ul>
+                        <li>
+                            Calcule, en explicitant les issues possibles, la probabilité d'avoir 
+                            deux garçons.
+                        </li>
+                        <li>
+                            Calcule la probabilité que le couple ait au moins une fille.
+                        </li>
+                    </ul>
+                    <em>
+                        Il peut utiliser le fait que c'est l'événement contraire d'avoir deux 
+                        garçons.
+                    </em>
+                </li>
+                <li>
+                    On tire, deux fois de suite et avec remise, une boule dans une urne 
+                    contenant une boule bleue et deux boules violettes. <br>
+                    Détermine la probabilité de tirer successivement deux boules violettes, 
+                    en utilisant une méthode de dénombrement prenant appui sur un tableau à 
+                    double entrée.
+                </li>
+                <li>
+                    On donne les fréquences d'apparition de chaque face d'un dé pour 10 000 lancers. <br>
+                    L'élève interprète les résultats en les comparant aux probabilités théoriques.
+                </li>
+                <li>
+                    L'élève interprète des simulations effectuées sur tableur ou logiciel de programmation
+                    en fonction d'un nombre de lancers.
+                </li>
+                
+            </ul>    
+    </header>
+    <main>
+        <section id="yourgame">
+            <h2>À vous de jouer</h2>
+            <article>
+                <h3 id="MEO1">Dénombrement <a href="#CQSFE1">(revoir les attendus)</a></h3>
+                <ol start="1">
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, en tenant 
+                            compte de l'ordre, combien y a-t-il d'issues possibles ? <br>
+                            <em>
+                                Une issue est un résultat possible, par exemple pile puis 
+                                face et face puis pile sont considérées comme des issues 
+                                différentes.
+                            </em><br>
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="noteq" src="./pics/notequal.png" alt="Signe différent">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q1r1"><label for="q1r1">1</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q1r2"><label for="q1r2">2</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q1r3"><label for="q1r3">3</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q1r4" data-correct><label for="q1r4">4</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, sans tenir 
+                            compte de l'ordre, combien y a-t-il d'issues possibles ? <br>
+                            <em>
+                                Une issue est un résultat possible, par exemple pile puis 
+                                face ou face puis pile sont considérées comme des issues 
+                                identiques.
+                            </em><br>
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="eq" src="./pics/equal.avif" alt="Signe égal">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q2r1"><label for="q2r1">1</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q2r2"><label for="q2r2">2</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q2r3" data-correct><label for="q2r3">3</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q2r4"><label for="q2r4">4</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si on lance simultanément (en même temps) deux pièces de monnaie 
+                            indiscernables (par exemple 2 pièces neuves d'une valeur de 1 euro),
+                            combien y a-t-il d'issues possibles ? <br>
+                            <em>
+                                Une issue est un résultat possible, par exemple pile et face.
+                            </em><br>
+                            <img class="coin" src="./pics/pile2euros.png" alt="Pièce de 2 euros pile">
+                            <img class="coin" src="./pics/face2euros.jpg" alt="Pièce de 2 euros face">
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q3r1"><label for="q3r1">1</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q3r2"><label for="q3r2">2</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q3r3" data-correct><label for="q3r3">3</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q3r4"><label for="q3r4">4</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="2" data-type="checkbox">
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, en tenant 
+                            compte de l'ordre, la probabilité d'obtenir pile (d'abord) puis 
+                            face (ensuite) est : <br>
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="noteq" src="./pics/notequal.png" alt="Signe différent">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" id="q4r1" data-correct><label for="q4r1">la même que celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q4r2"><label for="q4r2">supérieure à celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q4r3" data-correct><label for="q4r3">la même que celle d'obtenir deux fois pile</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q4r4"><label for="q4r4">supérieure à celle d'obtenir deux fois face</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="2" data-type="checkbox">  
+                        <p>
+                            Si on lance deux fois de suite une pièce de monnaie, sans tenir 
+                            compte de l'ordre, la probabilité d'obtenir pile (d'abord) puis 
+                            face (ensuite) est : <br>
+                            
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            /> 
+                            <img class="eq" src="./pics/equal.avif" alt="Signe égal">
+                            <img 
+                            class="coin" 
+                            src="./pics/face2euros.jpg" 
+                            alt="Pièce de 2 euros face"
+                            />
+                            <img 
+                            class="coin" 
+                            src="./pics/pile2euros.png" 
+                            alt="Pièce de 2 euros pile"
+                            />
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q5r1" data-correct><label for="q5r1">la même que celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q5r2"><label for="q5r2">supérieure à celle d'obtenir face (d'abord) puis pile (ensuite)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q5r3"><label for="q5r3">la même que celle d'obtenir deux fois pile</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q5r4" data-correct><label for="q5r4">supérieure à celle d'obtenir deux fois face</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="2" data-type="checkbox">
+                        <p>
+                            Que signifie qu'un point de la droite affine représentant la fonction \(f(x) = 1,8x + 32\) ait la même abscisse que son ordonnée ? (plusieurs réponses possibles)
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q6r1" data-correct><label for="q6r1">Que ses coordonnées sont solutions de l'équation \(f(x) = x\)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q6r2" data-correct><label for="q6r2">Que ses coordonnées sont solutions de l'équation \(1,8x + 32 = x\)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q6r3"><label for="q6r3">Que ses coordonnées ne sont pas solutions de l'équation \(f(x) = x\)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q6r4"><label for="q6r4">Que ses coordonnées ne sont pas solutions de l'équation \(1,8x + 32 = x\)</label>
+                            </li>
+                        </ol>  
+                    </li>
+                </ol>
+            </article>
+            
+            <article>
+                <h3 id="MEO2">Fréquences <a href="#CQSFE2">(revoir les attendus)</a></h3>
+                <ol start="7"> <!-- Changé start à 7 car la question précédente était la 6ème -->
+                    <li class="question" data-points="4" data-type="checkbox">
+                        <p>
+                            On considère le tableau de nombres évalués par la fonction \(f\) :
+                            <table border="1">
+                                <tr>
+                                    <td>\(x\)</td>
+                                    <td>-40</td>
+                                    <td>-30</td>
+                                    <td>-20</td>
+                                    <td>-10</td>
+                                    <td>0</td>
+                                    <td>10</td>
+                                    <td>20</td>
+                                    <td>30</td>
+                                    <td>40</td>
+                                </tr>
+                                <tr>
+                                    <td>\(f(x)\)</td>
+                                    <td>-40</td>
+                                    <td>-22</td>
+                                    <td>-4</td>
+                                    <td>14</td>
+                                    <td>32</td>
+                                    <td>50</td>
+                                    <td>68</td>
+                                    <td>86</td>
+                                    <td>104</td>
+                                </tr>
+                            </table> <br>
+                            En utilisant les valeurs de ce tableau,  et l'expression 
+                            algébrique de la fonction \(f(x) = 1,8x + 32\) cocher toutes les
+                            propositions vraies :
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q7r1" data-correct><label for="q7r1">Dire qu'il existe une température en degrés Celsius qui soit la même en degrés Fahrenheit signifie que l'antécédent égale l'image par \(f\).</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q7r2" data-correct><label for="q7r2">Dans le tableau il y a une colonne où les valeurs dans les deux lignes sont identiques ce qui signifie que l'image égale l'antécédent par \(f\).</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q7r3" data-correct><label for="q7r3">La droite affine représentant \(f\) et celle représentant \(x\mapsto x\) se coupent en \(x = -40\).</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q7r4" data-correct><label for="q7r4">L'équation \(f(x) = x\) admet une unique solution \(x = -40\)</label>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+            
+            <!-- COIN FLIP SIMULATOR START -->
+            <section id="coin-flip-simulator">
+                <h3>Simulateur de Pile ou Face</h3>
+                <div>
+                    <label for="num-flips-select">Nombre de lancers :</label>
+                    <select id="num-flips-select">
+                        <option value="10">10</option>
+                        <option value="100">100</option>
+                        <option value="1000">1 000</option>
+                        <option value="10000">10 000</option>
+                        <option value="100000">100 000</option>
+                        <option value="1000000">1 000 000</option>
+                    </select>
+                    <button id="start-flip-button">Lancer les pièces</button>
+                </div>
+                <div id="flip-results" style="margin-top: 15px;">
+                    <!-- Les résultats s'afficheront ici -->
+                </div>
+                <div id="probability-question-container" style="margin-top: 15px; display: none;">
+                    <p>D'après cette simulation, quelle est la probabilité (fréquence observée) d'obtenir Pile ?</p>
+                    <div id="probability-options">
+                        <!-- Les options radio s'afficheront ici -->
+                    </div>
+                    <button id="submit-probability-button" style="margin-top: 10px;">Vérifier la probabilité</button>
+                    <div id="probability-feedback" class="feedback" style="display: none;"></div>
+                </div>
+            </section>
+            <!-- COIN FLIP SIMULATOR END -->
+
+
+            <article>
+                <h3 id="MEO3">Image d'un nombre  <a href="#CQSFE3">(revoir les attendus)</a></h3>
+                <ol start="8">
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Quel est l'équivalent de 0°C en degrés Fahrenheit ?
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" id="q8r1"><label for="q8r1">0°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q8r2" data-correct><label for="q8r2">32°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q8r3"><label for="q8r3">-32°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q8r4"><label for="q8r4">16°F</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Que vaut -40°C en degrés Fahrenheit ?
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" id="q9r1"><label for="q9r1">-8°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q9r2"><label for="q9r2">-72°F</label> <!-- Corrigé : Erreur ici, la réponse q9r3 est la bonne -->
+                            </li>
+                            <li>
+                                <input type="radio" id="q9r3" data-correct><label for="q9r3">-40°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q9r4"><label for="q9r4">8°F</label>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+
+            <article>
+                <h3 id="MEO4">Antécédent(s) d'un nombre <a href="#CQSFE4">(revoir les attendus)</a></h3>
+                <ol start="10">
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Que vaut -40°F en degrés Celsius ?
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" id="q10r1"><label for="q10r1">-8°C</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q10r2"><label for="q10r2">-72°C</label> <!-- Corrigé : Erreur ici, la réponse q10r3 est la bonne -->
+                            </li>
+                            <li>
+                                <input type="radio" id="q10r3" data-correct><label for="q10r3">-40°C</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q10r4"><label for="q10r4">8°C</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>Quel est l'équivalent de 0°F en degrés Celsius ?</p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" id="q11r1"><label for="q11r1">0°C</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q11r2"><label for="q11r2">32°C</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q11r3" data-correct><label for="q11r3">\(-\dfrac{160}{9}\)°C</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="q11r4"><label for="q11r4">-17°C</label>
+                            </li>
+                        </ol>
+                    </li>
+                    
+                </ol>
+            </article>
+            <article>
+                <h3 id="MEO5">Déterminer un antécédent grâce à une équation <a href="#CQSFE5">(revoir les attendus)</a></h3>
+                
+                <ol start="12">
+                    <li class="question" data-points="3" data-type="checkbox">
+                        <p>
+                            On définit la fonction \(q\) avec le programme de calcul suivant : 
+                            <ol class="progcalc">
+                                <li>Choisir un nombre</li>
+                                <li>Lui soustraire 32</li>
+                                <li>Diviser le résultat par 1,8</li>
+                            </ol> <br>
+
+                            Trouver les bonnes réponses 
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q12r1" data-correct><label for="q12r1">Si 50 est le nombre de départ alors 10 est le résultat.</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q12r2" data-correct><label for="q12r2">Il existe un nombre de départ dont le résultat est le même.</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q12r3"><label for="q12r3">La fonction \(q\) définie par ce programme n'est pas affine.</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q12r4" data-correct><label for="q12r4">La fonction \(q\) définie par ce programme est affine.</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Quelle est la fonction permettant de passer des degrés Fahrenheit aux degrés Celsius ?
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q13r1"><label for="q13r1">\(g(x) = \dfrac{5}{9}x - 32\)</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q13r2"><label for="q13r2">\(g(x) = 0,55x - 32\)</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q13r3"><label for="q13r3">\(g(x) = 0,55x - 18\)</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q13r4" data-correct><label for="q13r4">\(g(x) = \dfrac{5}{9}x - \dfrac{160}{9}\)</label>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+            <article>
+                <h3 id="MEO6">Représentation graphique d'une fonction linéaire, d'une fonction affine <a href="#CQSFE6">(revoir les attendus)</a></h3>
+                <h4>Graphes de la fonction degrés Fahrenheit vers degrés Celsius, de la fonction réciproque et de l'identité</h3>
+                    
+                    <ol start="14">
+                        <li class="question" data-points="2" data-type="checkbox">
+                            <p>
+                                Par lecture graphique que peut-on observer ? (plusieurs réponses possibles)
+                            </p>
+                            <ol class="resp">
+                                <li>
+                                    <input type="checkbox" name="q14r1" data-correct><label for="q14r1">Que la droite affine représentative de la fonction \(f\) est croissante car son coefficient directeur est positif.</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="q14r2" data-correct><label for="q14r2">Que la droite affine représentative de la fonction \(g\) est croissante car son coefficient directeur est positif.</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="q14r3"><label for="q14r3">Que la droite affine représentative de la fonction \(g\) est décroissante car son coefficient directeur est négatif.</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="q14r4"><label for="q14r4">Que la droite affine représentative de la fonction \(g\) est décroissante car son ordonnée à l'origine est négative.</label>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+            </article>
+            <article>
+                <h3 id="MEO7">Interpréter les paramètres d'une fonction affine <a href="#CQSFE7">(revoir les attendus)</a></h3>
+                <ol start="15">
+                    <li class="question" data-points="2" data-type="checkbox">
+                        <p>
+                            Coche toutes les cases des propositions vraies
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" id="q15r1"><label for="q15r1">Les représentations graphiques des fonctions \(f\) et \(g\) sont parallèles car leurs coefficients directeurs sont égaux.</label> 
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q15r2" data-correct><label for="q15r2">Les représentations graphiques des fonctions \(f\) et \(g\) ne sont pas parallèles car leurs coefficients directeurs ne sont pas égaux.</label> 
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q15r3"><label for="q15r3">Les représentations graphiques des fonctions \(f\) et \(g\) se coupent en un point car leurs coefficients directeurs sont égaux.</label> 
+                            </li>
+                            <li>
+                                <input type="checkbox" id="q15r4" data-correct><label for="q15r4">Les représentations graphiques des fonctions \(f\) et \(g\) se coupent en un point car leurs coefficients directeurs ne sont pas égaux.</label> 
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+            <article>
+                <h3 id="MEO8">Modéliser un phénomène continu <a href="#CQSFE8">(revoir les attendus)</a></h3>
+                <ol start="16">
+                    <li class="question" data-points="2" data-type="checkbox">
+                        <p>
+                            En physique, le système international des unités a choisi le Kelvin pour mesurer les températures de façon absolue. Le zéro est la température la plus froide de l'univers et correspond à -273,15°C. Quelle est sa valeur en degrés Fahrenheit ? (plusieurs réponses possibles)
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q16r1"><label for="q16r1">-460°F</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q16r2" data-correct><label for="q16r2">-459,67°F</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q16r3" data-correct><label for="q16r3">\(-273,15 \times 1,8 + 32\) °F</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q16r4"><label for="q16r4">-469,67°F</label>
+                            </li> 
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            On définit la fonction \(k\) permettant d'exprimer les Kelvin en fonction des degrés Celsius avec la relation : 
+                            \[k(x) = x + 273,15\] où \(x\) désigne des degrés Celsius. <br>
+                            Quelle fonction permet d'exprimer les degrés Celsius en fonction des Kelvin ?
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q17r1" data-correct><label for="q17r1">\(c(x) = x - 273,15\) où \(x\) désigne les Kelvin</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q17r2"><label for="q17r2">\(c(x) = 273,15x\) où \(x\) désigne les Kelvin</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q17r3"><label for="q17r3">\(c(x) = 273,15 - x\) où \(x\) désigne les Kelvin</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q17r4"><label for="q17r4">\(c(x) = x - \frac{1}{273,15}\) où \(x\) désigne les Kelvin</label>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+            <article>
+                <h3 id="MEO9">Modéliser une situation de proportionnalité <a href="#CQSFE9">(revoir les attendus)</a></h3>
+                <ol start="18">
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si la température augmente d'1°C alors de combien augmente-t-elle en degré Fahrenheit ?
+                        </p>
+                        
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q18r1"><label for="q18r1">1°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q18r2"><label for="q18r2">32°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q18r3" data-correct><label for="q18r3">1,8°F</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q18r4"><label for="q18r4">ça dépend de la température initiale</label>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="question" data-points="1" data-type="radio">
+                        <p>
+                            Si la température augmente d'1°F alors de combien augmente-t-elle en degré Celsius ?
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="radio" name="q19r1"><label>1°C</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q19r2"><label>\(-\dfrac{160}{9}\)°F (environ -17,78)</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q19r3" data-correct><label>\(\dfrac{5}{9}\)°F (environ 0,56)</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="q19r4"><label>ça dépend de la température initiale</label>
+                            </li>
+                        </ol>
+                    </li>
+                    
+                </ol>
+            </article>
+            <article>
+                <h3 id="MEO10">Résoudre des problèmes modélisés par des fonctions <a href="#CQSFE10">(revoir les attendus)</a></h3>
+                <ol start="20">
+                    
+                    <li class="question" data-points="2" data-type="checkbox">
+                        <p>
+                            Comment déterminer la fonction permettant de calculer les Kelvin à partir des degrés Fahrenheit ? (plusieurs réponses possibles)
+                        </p>
+                        <ol class="resp">
+                            <li>
+                                <input type="checkbox" name="q20r1"><label for="q20r1">En multipliant par \(\dfrac{5}{9}\) puis en retranchant \(\dfrac{160}{9}\)</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q20r2" data-correct><label for="q20r2">En remplaçant \(x\) par \(g(x) = \dfrac{5}{9}x - \dfrac{160}{9}\) dans l'expression \(k(x)\) avec cette fois \(x\) qui désigne la température en degrés Fahrenheit</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q20r3" data-correct><label for="q20r3">À l'aide de la fonction \(k_2(x) = \dfrac{5}{9}x - \dfrac{2298,35}{9}\) où \(x\) désigne la température en degrés Fahrenheit</label> <!-- Note : -2298.35/9 est -255.372... C'est (5/9)*(F-32) + 273.15 = 5/9 F - 160/9 + 273.15 = 5/9 F + (2458.35-160)/9 = 5/9 F + 2298.35/9. Le signe était inversé. -->
+                            </li>
+                            <li>
+                                <input type="checkbox" name="q20r4"><label for="q20r4">À l'aide de la fonction \(k_3(x) = \dfrac{9}{5}x + 305,15\)</label>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </article>
+        </section>
+
+        <button id="submit-btn">Envoyer</button>
+        <div id="score-details">
+            <p id="score-display"></p>
+            <ul id="question-points"></ul>
+        </div>
+
+    </main>
+    
+    <footer>
+        <p>📚 Envie de progresser en maths ? Voir mon annonce sur <a href="https://www.superprof.fr/reussissez-maths-niveau-etudes-esprit.html" target="_blank">superprof</a></p>
+        <ul>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/image-fonction-affine/index.html" target="_blank">Calcul de l'image d'un nombre par une fonction affine</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/antecedent-fonction-affine/index.html" target="_blank">Antécédent d'un nombre par une fonction affine</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/quizz/index.html" target="_blank">QCMs de mathématiques (niveau 3<sup>ème</sup> - 2<sup>de</sup>)</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/quizz-stats-3eme/index.html" target="_blank">QCMs de stats (niveau 3<sup>ème</sup> - 2<sup>de</sup>)</a>
+            </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/qcm-numbers/" target="_blank">QCMs sur les nombres</a>
+             </li>
+            <li>
+                <a href="https://didaskalosmanthanon.github.io/geometry/index.html" target="_blank">Exercices de géométrie (niveau 3<sup>ème</sup> - 2<sup>de</sup>)</a>
+             </li>
+             <li>
+                <a href="https://didaskalosmanthanon.github.io/testimonial-slider/index.html" target="_blank">Ce que mes élèves pensent de mes cours de maths</a>
+             </li>
+        </ul>
+        <p>Pour entrer en contact remplissez ce <a href="https://forms.gle/mcZ5uMv1BjynrWrz9" target="_blank">formulaire</a></p>
+        <p>© 2025 - <strong>Didaskalos Manthanon</strong>, <em>Apprenez à devenir un maître apprenant</em></p>
+        
+      </footer>
+
+      <script src="script.js"></script>
+      <script>
+        // JavaScript pour le simulateur de Pile ou Face
+        document.addEventListener('DOMContentLoaded', () => {
+            const numFlipsSelect = document.getElementById('num-flips-select');
+            const startFlipButton = document.getElementById('start-flip-button');
+            const flipResultsDiv = document.getElementById('flip-results');
+            const probabilityQuestionContainer = document.getElementById('probability-question-container');
+            const probabilityOptionsDiv = document.getElementById('probability-options');
+            const submitProbabilityButton = document.getElementById('submit-probability-button');
+            const probabilityFeedbackDiv = document.getElementById('probability-feedback');
+
+            let correctAnswerValue = null; // Stockera la valeur de la bonne réponse pour la question de probabilité
+
+            startFlipButton.addEventListener('click', () => {
+                const numFlips = parseInt(numFlipsSelect.value);
+                simulateFlips(numFlips);
+            });
+
+            submitProbabilityButton.addEventListener('click', () => {
+                const selectedOption = document.querySelector('input[name="prob-option"]:checked');
+                if (selectedOption) {
+                    probabilityFeedbackDiv.style.display = 'block';
+                    if (selectedOption.value === correctAnswerValue) {
+                        probabilityFeedbackDiv.textContent = 'Correct ! La fréquence observée est bien la probabilité empirique.';
+                        probabilityFeedbackDiv.className = 'feedback correct';
+                    } else {
+                        probabilityFeedbackDiv.textContent = `Incorrect. La bonne réponse était ${correctAnswerValue}. C'est le nombre de Piles divisé par le nombre total de lancers.`;
+                        probabilityFeedbackDiv.className = 'feedback incorrect';
+                    }
+                } else {
+                    probabilityFeedbackDiv.textContent = 'Veuillez sélectionner une option.';
+                    probabilityFeedbackDiv.className = 'feedback incorrect'; // ou une autre classe pour avertissement
+                    probabilityFeedbackDiv.style.display = 'block';
+                }
+            });
+
+            function simulateFlips(numFlips) {
+                let pileCount = 0;
+                let faceCount = 0;
+
+                flipResultsDiv.innerHTML = `<p>Simulation en cours pour ${numFlips} lancers...</p>`;
+                probabilityQuestionContainer.style.display = 'none'; // Cacher la question pendant la sim
+                probabilityFeedbackDiv.style.display = 'none';
+
+
+                // Pour les très grands nombres de lancers, on peut faire un setTimeout pour ne pas bloquer le navigateur
+                // Mais pour cet exemple, on fait tout en synchrone. Pour une meilleure UX sur 1M, il faudrait un worker.
+                setTimeout(() => {
+                    for (let i = 0; i < numFlips; i++) {
+                        if (Math.random() < 0.5) {
+                            pileCount++;
+                        } else {
+                            faceCount++;
+                        }
+                    }
+
+                    flipResultsDiv.innerHTML = `
+                        <p><strong>Résultats pour ${numFlips} lancers :</strong></p>
+                        <p>Nombre de Piles : ${pileCount}</p>
+                        <p>Nombre de Faces : ${faceCount}</p>
+                    `;
+
+                    generateProbabilityQuestion(pileCount, numFlips);
+                    probabilityQuestionContainer.style.display = 'block';
+                }, 10); // Un petit délai pour que le message "Simulation en cours" s'affiche
+            }
+
+            function generateProbabilityQuestion(pileCount, totalFlips) {
+                const actualFrequency = pileCount / totalFlips;
+                correctAnswerValue = `${pileCount}/${totalFlips}`; // La bonne réponse sous forme de fraction
+
+                let options = [
+                    { text: `a) 1/2 (soit 0.5)`, value: "1/2" },
+                    { text: `b) ${pileCount}/${totalFlips} (soit env. ${actualFrequency.toFixed(4)})`, value: correctAnswerValue },
+                    { text: `c) 0.5 (soit 1/2)`, value: "0.5" }
+                ];
+
+                // Générer une fausse réponse décimale proche mais incorrecte
+                let wrongDecimalValue;
+                let attempts = 0;
+                do {
+                    // Génère un décalage aléatoire entre -0.035 et +0.035, mais pas trop petit
+                    let offset = (Math.random() * 0.07) - 0.035; 
+                    if (Math.abs(offset) < 0.005) { // S'assurer que l'offset n'est pas trop petit
+                         offset = (offset > 0 ? 0.005 : -0.005) + Math.random()*0.01;
+                    }
+                    wrongDecimalValue = parseFloat((actualFrequency + offset).toFixed(3)); // 3 décimales
+                    attempts++;
+                } while ( (wrongDecimalValue === 0.5 || wrongDecimalValue === actualFrequency || wrongDecimalValue < 0 || wrongDecimalValue > 1) && attempts < 10); // Éviter qu'elle soit égale à 0.5 ou à la fréquence réelle, ou hors bornes
+
+                // Si après 10 tentatives on n'a pas une bonne valeur, on en fixe une par défaut
+                if (wrongDecimalValue === 0.5 || wrongDecimalValue === actualFrequency || wrongDecimalValue < 0 || wrongDecimalValue > 1) {
+                     wrongDecimalValue = parseFloat((actualFrequency + 0.021).toFixed(3));
+                     if (wrongDecimalValue > 1) wrongDecimalValue = parseFloat((actualFrequency - 0.021).toFixed(3));
+                     if (wrongDecimalValue < 0) wrongDecimalValue = 0.011; // Juste pour s'assurer
+                }
+
+
+                options.push({ text: `d) ${wrongDecimalValue.toFixed(3)}`, value: wrongDecimalValue.toFixed(3) });
+
+                // Mélanger les options pour que la bonne réponse ne soit pas toujours b)
+                options.sort(() => Math.random() - 0.5);
+
+                probabilityOptionsDiv.innerHTML = ''; // Vider les anciennes options
+                options.forEach((option, index) => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'prob-option';
+                    input.value = option.value;
+                    input.id = `prob-opt-${index}`;
+                    label.htmlFor = `prob-opt-${index}`;
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(` ${option.text}`));
+                    probabilityOptionsDiv.appendChild(label);
+                });
+            }
+        });
+
+      </script>
+</body>
+
+</html>

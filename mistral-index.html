@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de Pile ou Face</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .question {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulateur de Pile ou Face</h1>
+    <div>
+        <button onclick="simulate(10)">10 Lancers</button>
+        <button onclick="simulate(100)">100 Lancers</button>
+        <button onclick="simulate(1000)">1000 Lancers</button>
+        <button onclick="simulate(10000)">10000 Lancers</button>
+        <button onclick="simulate(100000)">100000 Lancers</button>
+        <button onclick="simulate(1000000)">1000000 Lancers</button>
+    </div>
+    <div id="results"></div>
+    <div class="question" id="question" style="display: none;">
+        <p>Quelle est la probabilité d'obtenir pile ?</p>
+        <button onclick="checkAnswer('a')">a) 1/2</button>
+        <button onclick="checkAnswer('b')">b) Nombre de pile / Nombre total de lancers</button>
+        <button onclick="checkAnswer('c')">c) 0.5</button>
+        <button onclick="checkAnswer('d')">d) Valeur proche</button>
+        <p id="feedback"></p>
+    </div>
+
+    <script>
+        let heads = 0;
+        let totalFlips = 0;
+        let correctProbability = 0;
+
+        function simulate(numFlips) {
+            heads = 0;
+            totalFlips = numFlips;
+
+            for (let i = 0; i < numFlips; i++) {
+                if (Math.random() < 0.5) {
+                    heads++;
+                }
+            }
+
+            correctProbability = heads / totalFlips;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<p>Nombre de pile : ${heads}</p><p>Nombre de face : ${totalFlips - heads}</p>`;
+
+            document.getElementById('question').style.display = 'block';
+            document.getElementById('feedback').textContent = '';
+        }
+
+        function checkAnswer(answer) {
+            const feedbackDiv = document.getElementById('feedback');
+            const closeProbability = (Math.random() < 0.5) ? 0.51 : 0.49; // Randomly choose a close value
+
+            if (answer === 'b') {
+                feedbackDiv.textContent = 'Correct ! La probabilité est bien ' + correctProbability.toFixed(4);
+            } else {
+                feedbackDiv.textContent = `Incorrect. La bonne réponse est b) ${correctProbability.toFixed(4)}`;
+            }
+        }
+    </script>
+</body>
+</html>
